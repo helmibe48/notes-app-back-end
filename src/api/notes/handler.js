@@ -18,6 +18,7 @@ class NotesHandler {
       const { title = 'untitled', body, tags } = request.payload;
 
       const noteId = await this._service.addNote({ title, body, tags });
+
       const response = h.response({
         status: 'success',
         message: 'Catatan berhasil ditambahkan',
@@ -36,6 +37,7 @@ class NotesHandler {
         response.code(error.statusCode);
         return response;
       }
+
       // Server ERROR!
       const response = h.response({
         status: 'error',
@@ -125,6 +127,7 @@ class NotesHandler {
     try {
       const { id } = request.params;
       await this._service.deleteNoteById(id);
+
       return {
         status: 'success',
         message: 'Catatan berhasil dihapus',
